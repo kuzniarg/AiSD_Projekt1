@@ -37,4 +37,8 @@ public class ZbiorPunktow {
         }
         return druk;
     }
+
+    boolean pusty() {
+        return this.zbior.isEmpty();
+    }
 }
