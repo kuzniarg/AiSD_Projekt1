@@ -38,4 +38,9 @@ public class Punkt {
     public String toString(){
         return x + "\t" + y;
     }
+
+    void przesun(double x, double y) {
+        this.x -= x;
+        this.y -= y;
+    }
 }

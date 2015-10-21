@@ -41,4 +41,18 @@ public class ZbiorPunktow {
     boolean pusty() {
         return this.zbior.isEmpty();
     }
+
+    Punkt wezPunkt(int i) {
+        return zbior.get(i);
+    }
+
+    int wielkosc() {
+        return zbior.size();
+    }
+
+    void przesunPunkty(double x, double y) {
+        for(int i = 0; i < zbior.size(); i++){
+            zbior.get(i).przesun(x,y);
+        }
+    }
 }
