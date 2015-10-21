@@ -11,7 +11,9 @@ package projekt1;
  */
 public class Punkt {
     private double x,y;
-    private boolean czyWypukly;
+    private boolean czyWypukly = false;
+    private double kat;
+    private double odleglosc;
 
     public Punkt (double a, double b){
         this.x = a;
@@ -36,11 +38,27 @@ public class Punkt {
     
     @Override
     public String toString(){
-        return x + "\t" + y;
+        return x + "\t" + y + "\t" + czyWypukly + "\t\t" + (int)kat + "\t" + odleglosc;
     }
 
     void przesun(double x, double y) {
         this.x -= x;
         this.y -= y;
+    }
+    
+    void setKat(double k){
+        this.kat = k;
+    }
+    
+    double getKat(){
+        return this.kat;
+    }
+    
+    void setOdleglosc(double k){
+        this.odleglosc = k;
+    }
+    
+    double getOdleglosc(){
+        return this.odleglosc;
     }
 }

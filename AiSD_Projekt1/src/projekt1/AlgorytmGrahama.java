@@ -23,13 +23,32 @@ public class AlgorytmGrahama {
             }
             i++;
         }
-        zbior.wezPunkt(pomN).setWypukly(true);
-        ustalPoczatekUkladu(zbior, zbior.wezPunkt(pomN));
+        zbior.ustalPunktO(pomN);
+        ustalPoczatekUkladu(zbior);
+        obliczWartosci(zbior);
     }
 
-    private static void ustalPoczatekUkladu(ZbiorPunktow zbior, Punkt punkt) {
-        double x = punkt.getX(), y = punkt.getY();
+    private static void ustalPoczatekUkladu(ZbiorPunktow zbior) {
+        double x = zbior.wezPunkt(0).getX(), y = zbior.wezPunkt(0).getY();
         zbior.przesunPunkty(x, y);
+    }
+
+    private static void obliczWartosci(ZbiorPunktow zbior) {
+        for (int i = 1; i < zbior.wielkosc(); i++) {
+            zbior.wezPunkt(i).setOdleglosc(Math.sqrt(Math.pow(zbior.wezPunkt(i).getX(), 2) + Math.pow(zbior.wezPunkt(i).getY(), 2)));
+            if (zbior.wezPunkt(i).getX() == 0) {
+                zbior.wezPunkt(i).setKat(90);
+            } else if (zbior.wezPunkt(i).getY() == 0) {
+                zbior.wezPunkt(i).setKat(0);
+            } else {
+                double pom;
+                pom = Math.atan(zbior.wezPunkt(i).getY() / zbior.wezPunkt(i).getX());
+                pom = Math.toDegrees(pom);
+                if (pom < 0)
+                    pom = -(pom - 90);
+                zbior.wezPunkt(i).setKat(pom);
+            }
+        }
     }
 
 }

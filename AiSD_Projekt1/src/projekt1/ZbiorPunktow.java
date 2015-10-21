@@ -26,7 +26,7 @@ public class ZbiorPunktow {
 
     @Override
     public String toString() {
-        String druk = "";
+        String druk = "X\tY\tWypuklosc\tKat\tOdleglosc\n";
         int i = 0;
         while (i < zbior.size()) {
             druk += zbior.get(i) + "\n";
@@ -51,8 +51,18 @@ public class ZbiorPunktow {
     }
 
     void przesunPunkty(double x, double y) {
-        for(int i = 0; i < zbior.size(); i++){
-            zbior.get(i).przesun(x,y);
+        for (int i = 0; i < zbior.size(); i++) {
+            zbior.get(i).przesun(x, y);
         }
+    }
+
+    void ustalPunktO(int pomN) {
+        Punkt pom = zbior.get(pomN);
+        zbior.set(pomN, zbior.get(0));
+        zbior.set(0, pom);
+
+        zbior.get(0).setKat(0);
+        zbior.get(0).setWypukly(true);
+        zbior.get(0).setOdleglosc(0);
     }
 }
