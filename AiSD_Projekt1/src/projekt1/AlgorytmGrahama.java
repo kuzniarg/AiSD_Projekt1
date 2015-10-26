@@ -26,6 +26,9 @@ public class AlgorytmGrahama {
         zbior.ustalPunktO(pomN);
         ustalPoczatekUkladu(zbior);
         obliczWartosci(zbior);
+        zbior.sortuj();
+
+        algorytm(zbior);
     }
 
     private static void ustalPoczatekUkladu(ZbiorPunktow zbior) {
@@ -44,11 +47,38 @@ public class AlgorytmGrahama {
                 double pom;
                 pom = Math.atan(zbior.wezPunkt(i).getY() / zbior.wezPunkt(i).getX());
                 pom = Math.toDegrees(pom);
-                if (pom < 0)
+                if (pom < 0) {
                     pom = -(pom - 90);
+                }
                 zbior.wezPunkt(i).setKat(pom);
             }
         }
     }
 
-}
+    private static void algorytm(ZbiorPunktow zbior) {
+        Punkt A, B, C;
+        int i = 1;
+
+        while (i < zbior.wielkosc() - 2) {
+            A = zbior.wezPunkt(i);
+            B = zbior.wezPunkt(i + 1);
+            C = zbior.wezPunkt(i + 2);
+
+            Punkt pom1 = new Punkt(C.getX() - A.getX(), C.getY() - A.getY()), pom2 = new Punkt(B.getX() - A.getX(), B.getY() - A.getY());
+
+            double iloczynWek = pom1.getX() * pom2.getY() - pom2.getX() * pom2.getY();
+            if (iloczynWek < 0){
+                zbior.usun(i);
+                if (i > 1)
+                    i--;
+            }
+            else {
+               B.setWypukly(true);
+            }
+            A.setWypukly(true);
+            C.setWypukly(true);
+            i++;
+        }
+    }
+
+                                               }

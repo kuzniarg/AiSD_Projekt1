@@ -6,6 +6,7 @@
 package projekt1;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  *
@@ -38,25 +39,25 @@ public class ZbiorPunktow {
         return druk;
     }
 
-    boolean pusty() {
+    public boolean pusty() {
         return this.zbior.isEmpty();
     }
 
-    Punkt wezPunkt(int i) {
+    public Punkt wezPunkt(int i) {
         return zbior.get(i);
     }
 
-    int wielkosc() {
+    public int wielkosc() {
         return zbior.size();
     }
 
-    void przesunPunkty(double x, double y) {
+    public void przesunPunkty(double x, double y) {
         for (int i = 0; i < zbior.size(); i++) {
             zbior.get(i).przesun(x, y);
         }
     }
 
-    void ustalPunktO(int pomN) {
+    public void ustalPunktO(int pomN) {
         Punkt pom = zbior.get(pomN);
         zbior.set(pomN, zbior.get(0));
         zbior.set(0, pom);
@@ -65,4 +66,22 @@ public class ZbiorPunktow {
         zbior.get(0).setWypukly(true);
         zbior.get(0).setOdleglosc(0);
     }
+
+    public void sortuj() {
+        Comparator<? super Punkt> c = null;
+        this.zbior.sort(c);
+        int i = 0;
+        while (i < zbior.size()) {
+            if (zbior.get(i).getX() == 0 && zbior.get(i).getY() == 0 && zbior.get(i).getKat() == 0 && zbior.get(i).getOdleglosc() == 0 && !zbior.get(i).czyWypukly()) {
+                zbior.remove(i);
+            }
+            i++;
+
+        }
+    }
+    
+    public void usun(int i){
+        zbior.remove(i);
+    }
+
 }
