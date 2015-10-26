@@ -48,7 +48,7 @@ public class AlgorytmGrahama {
                 pom = Math.atan(zbior.wezPunkt(i).getY() / zbior.wezPunkt(i).getX());
                 pom = Math.toDegrees(pom);
                 if (pom < 0) {
-                    pom = -(pom - 90);
+                    pom += 180;
                 }
                 zbior.wezPunkt(i).setKat(pom);
             }
@@ -64,21 +64,21 @@ public class AlgorytmGrahama {
             B = zbior.wezPunkt(i + 1);
             C = zbior.wezPunkt(i + 2);
 
-            Punkt pom1 = new Punkt(C.getX() - A.getX(), C.getY() - A.getY()), pom2 = new Punkt(B.getX() - A.getX(), B.getY() - A.getY());
+            Punkt pom1 = new Punkt(A.getX() - C.getX(), A.getY() - C.getY()), pom2 = new Punkt(A.getX() - B.getX(), A.getY() - B.getY());
 
-            double iloczynWek = pom1.getX() * pom2.getY() - pom2.getX() * pom2.getY();
-            if (iloczynWek < 0){
-                zbior.usun(i);
-                if (i > 1)
+            double iloczynWek = pom1.getX() * pom2.getY() - pom2.getX() * pom1.getY();
+            if (iloczynWek > 0) {
+                zbior.usun(i + 1);
+                if (i > 1) {
                     i--;
-            }
-            else {
-               B.setWypukly(true);
+                }
+            } else {
+                B.setWypukly(true);
             }
             A.setWypukly(true);
-            C.setWypukly(true);
             i++;
         }
+        zbior.wezPunkt(i+1).setWypukly(true);
     }
 
-                                               }
+}

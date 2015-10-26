@@ -26,27 +26,34 @@ public class Projekt1 {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         //PrintStream Bledy = null;
         //System.setErr(Bledy);
-        
+
         if (args.length < 1) {
             System.out.println("Brak danych na wejściu.");
             return;
         }
-        File plik = new File(".//src//Teksty//" + args[0]);
 
         ZbiorPunktow zbior = new ZbiorPunktow();
+        int plikN = 0;
 
-        wczytajPlik(plik, zbior);
+        while (plikN < args.length) {
+            File plik = new File(".//src//Teksty//" + args[plikN]);
+            wczytajPlik(plik, zbior);
+            plikN++;
+        }
+
         if (zbior.pusty()) {
-            System.err.println("Brak poprawnych danych w podanym pliku");
+            System.err.println("Brak poprawnych danych.");
+            return;
         }
 
         //TEST
-        System.out.println(zbior);
-        
+        //System.out.println(zbior);
         AlgorytmGrahama.znajdzOtoczke(zbior);
-    
+
         //TEST
         System.out.println(zbior);
         
+        //Metoda licząca pole wieloboku wypukłego
+
     }
 }

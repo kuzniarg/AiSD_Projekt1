@@ -37,21 +37,25 @@ public class Pliki {
                                 linia = "";
                             }
                         } else {
-                            System.err.println("Błąd w danych. Podano conajmniej jedną literę. Linia: " + k);
+                            System.err.println("Błąd w " + plik.getName() + ". Podano conajmniej jedną literę. Linia: " + k);
                             n = 5;
                         }
                     } else {
-                        System.err.println("Błąd w danych. Podano conajmniej jedną literę. Linia: " + k);
+                        System.err.println("Błąd w " + plik.getName() + ". Podano conajmniej jedną literę. Linia: " + k);
                         n = 5;
                     }
                 }
                 if (n == 1) {
-                    System.err.println("Błąd w danych. Podano za dużo liczb. Linia: " + k);
+                    System.err.println("Błąd w " + plik.getName() + ". Podano za dużo liczb. Linia: " + k);
                 } else if (n == 0) {
                     zbior.dodajPunkt(a, b);
                 }
                 k++;
             }
+            if (k==1)
+                System.err.println("Brak poprawnych danych w pliku " + plik.getName());
+            else
+                System.out.println("Poprawnie wczytano dane z pliku " + plik.getName());
         }
     }
 
