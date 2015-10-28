@@ -15,6 +15,7 @@ import java.util.Comparator;
 public class ZbiorPunktow {
 
     private ArrayList<Punkt> zbior;
+    private double pole = 0;
 
     public ZbiorPunktow() {
         zbior = new ArrayList<>();
@@ -79,9 +80,25 @@ public class ZbiorPunktow {
 
         }
     }
-    
-    public void usun(int i){
+
+    public void usun(int i) {
         zbior.remove(i);
+    }
+
+    public void oczysc() {
+        for (int i = 0; i < this.wielkosc(); i++) {
+            if (!zbior.get(i).czyWypukly()) {
+                zbior.remove(i);
+            }
+        }
+    }
+
+    public void setPole(double p) {
+        this.pole = p;
+    }
+
+    public double getPole() {
+        return this.pole;
     }
 
 }

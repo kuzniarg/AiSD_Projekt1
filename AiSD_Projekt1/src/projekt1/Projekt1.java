@@ -5,12 +5,10 @@
  */
 package projekt1;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintStream;
+import static projekt1.MetodaMonteCarlo.MetodaMonteCarlo;
 import static projekt1.Pliki.wczytajPlik;
 
 /**
@@ -45,15 +43,26 @@ public class Projekt1 {
             System.err.println("Brak poprawnych danych.");
             return;
         }
+        if (zbior.wielkosc() <= 2) {
+            System.err.println("Za mało punktów (" + zbior.wielkosc() + "), aby policzyć pole figury.");
+            return;
+        }
 
         //TEST
         //System.out.println(zbior);
         AlgorytmGrahama.znajdzOtoczke(zbior);
+        zbior.oczysc();
+
+        if (zbior.wielkosc() <= 2) {
+            System.err.println("Za mało punktów niewspółliniowych (" + zbior.wielkosc() + "), aby policzyć pole figury.");
+            return;
+        }
 
         //TEST
         System.out.println(zbior);
-        
-        //Metoda licząca pole wieloboku wypukłego
 
+        MetodaMonteCarlo(zbior);
+        //TEST
+        System.out.println("Wielkość pola figury opisywanej przez punkty wypukłe wynosi " + zbior.getPole());
     }
 }

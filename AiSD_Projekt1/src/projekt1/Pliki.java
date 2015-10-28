@@ -17,11 +17,11 @@ import java.io.IOException;
  */
 public class Pliki {
 
-    public static void wczytajPlik(File plik, ZbiorPunktow zbior) throws FileNotFoundException, IOException {
+    public static void wczytajPlik(File plik, ZbiorPunktow zbior) {
         try (FileReader fileReader = new FileReader(plik)) {
             BufferedReader bufferReader = new BufferedReader(fileReader);
             String linia;
-            int n = 0, k = 1;
+            int n, k = 1;
             double a = 0, b = 0;
             while ((linia = bufferReader.readLine()) != null) {
                 n = 0;
@@ -52,10 +52,13 @@ public class Pliki {
                 }
                 k++;
             }
-            if (k==1)
+            if (k == 1) {
                 System.err.println("Brak poprawnych danych w pliku " + plik.getName());
-            else
+            } else {
                 System.out.println("Poprawnie wczytano dane z pliku " + plik.getName());
+            }
+        } catch (IOException e) {
+            System.err.println("Błąd odczytu pliku " + plik.getName());
         }
     }
 
