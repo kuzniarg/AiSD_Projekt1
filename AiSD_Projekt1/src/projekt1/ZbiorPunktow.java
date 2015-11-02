@@ -101,4 +101,29 @@ public class ZbiorPunktow {
         return this.pole;
     }
 
+    double znajdzYduze() {
+        double max=0;
+        for (int i = 0; i < zbior.size(); i++){
+            if (max < zbior.get(i).getY())
+                max = zbior.get(i).getY();
+        }
+        return max;
+    }
+
+    double znajdzXduze() {
+        double max=0;
+        for (int i = 0; i < zbior.size(); i++){
+            if (max < zbior.get(i).getX())
+                max = zbior.get(i).getX();
+        }
+        return max;    }
+
+    double znajdzXmale() {
+        double max=0;
+        for (int i = 0; i < zbior.size(); i++){
+            if (max > zbior.get(i).getX())
+                max = zbior.get(i).getX();
+        }
+        return max;    }
+
 }
