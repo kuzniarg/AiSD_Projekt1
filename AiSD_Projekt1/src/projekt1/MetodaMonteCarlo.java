@@ -15,22 +15,23 @@ public class MetodaMonteCarlo {
 
     private static ZbiorPunktow zbior;
     private static int n;
-    private static double px; //Współrzędna X badanego punktu (zamiast punkt.getX())
-    private static double py; //Współrzędna Y badanego punktu (zamiast punkt.getY())
-    private static double rx; //Współrzędna X końca prostej
-    private static double ry; //Współrzędna Y końca prostej
+    private static double px;
+    private static double py;
+    private static double rx;
+    private static double ry;
     private static double polygonx[];
     private static double polygony[];
     private static double tmpx;
+    ;
     private static double tmpy;
     private static int k;
 
-    public static void MetodaMonteCarlo(ZbiorPunktow z, int ileLos) {
+    public static void MetodaMonteCarlo(ZbiorPunktow z) {
         zbior = z;
         n = zbior.wielkosc();
 
         double Y = zbior.znajdzYduze(), Xd = zbior.znajdzXduze(), Xm = zbior.znajdzXmale(), pole = 0;
-        int TAK = 0, NIE = 0;
+        int ileLos = 1000, TAK = 0, NIE = 0;
 
         for (int i = 0; i < ileLos; i++) {
             Punkt punkt = new Punkt(losuj(0, Y), losuj(Xm, Xd));
@@ -54,23 +55,28 @@ public class MetodaMonteCarlo {
     }
 
     private static boolean czyPunktWFigurze(Punkt punkt) {
-        px = punkt.getX();
-        py = punkt.getY();
+        double max_x = zbior.znajdzXduze();
 
-        rx = zbior.znajdzXduze() + 1;
+        px = punkt.getX();
+        py = punkt.getX();
+
+        //Wyznaczanie wspolrzednych drugiego konca odcinka
+        rx = max_x + 1;
         ry = py;
 
-        int liczbaPrzeciec = 0;
-        for (int i = 0; i < n; i++) {
+        int l = 0; //liczba przeciec
+        int i;
+
+        for (i = 0; i < n; i++) {
             k = i;
             if (przynaleznosc(zbior.wezPunkt(i).getX(), zbior.wezPunkt(i).getY(), zbior.wezPunkt((i + 1) % n).getX(), zbior.wezPunkt((i + 1) % n).getY(), px, py)) {
                 return true;
             }
             if (przecinanie(zbior.wezPunkt(i).getX(), zbior.wezPunkt(i).getY(), zbior.wezPunkt((i + 1) % n).getX(), zbior.wezPunkt((i + 1) % n).getY())) {
-                liczbaPrzeciec++;
+                l++;
             }
         }
-        return (liczbaPrzeciec % 2) != 0;
+        return (l % 2) != 0;
     }
 
     private static boolean przynaleznosc(double xx, double xy, double yx, double yy, double zx, double zy) {
@@ -100,8 +106,9 @@ public class MetodaMonteCarlo {
             } else {
                 return false;
             }
-        } else //do polprostej nalezy przynajmniej jeden koniec odcinka |AB|
-         if (przynaleznosc(px, py, rx, ry, ax, ay)
+        } else //			do polprostej nalezy przynajmniej jeden koniec odcinka |AB|
+        {
+            if (przynaleznosc(px, py, rx, ry, ax, ay)
                     && przynaleznosc(px, py, rx, ry, bx, by)) {
                 if (Math.signum(det(px, py, rx, ry, polygonx[(k - 1 + n) % n], polygony[(k - 1 + n) % n])) == Math.signum(det(px, py, rx, ry, polygonx[(k + 2) % n], polygony[(k + 2) % n]))
                         && Math.signum(det(px, py, rx, ry, polygonx[(k - 1 + n) % n], polygony[(k - 1 + n) % n])) != 0) {
@@ -124,6 +131,7 @@ public class MetodaMonteCarlo {
                             && Math.signum(det(px, py, rx, ry, tmpx, tmpy)) != 0);
                 }
             }
+        }
         return false;
     }
 }

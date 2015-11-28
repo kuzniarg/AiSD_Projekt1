@@ -5,7 +5,6 @@
  */
 package projekt1;
 
-import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -49,7 +48,7 @@ public class Projekt1 {
             return;
         }
 
-//TEST
+        //TEST
         //System.out.println(zbior);
         AlgorytmGrahama.znajdzOtoczke(zbior);
         zbior.oczysc();
@@ -59,11 +58,11 @@ public class Projekt1 {
             return;
         }
 
-//TEST
+        //TEST
         System.out.println(zbior);
-        
-        MetodaMonteCarlo(zbior, 1000000);
-//TEST
+
+        MetodaMonteCarlo(zbior);
+        //TEST
         System.out.println("Wielkość pola figury opisywanej przez punkty wypukłe wynosi " + zbior.getPole());
     }
 }
