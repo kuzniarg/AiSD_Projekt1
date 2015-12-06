@@ -5,9 +5,9 @@
  */
 package projekt1;
 
+import static projekt1.Projekt1.zbior;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class Pliki {
 
-    public static void wczytajPlik(File plik, ZbiorPunktow zbior) {
+    public static void wczytajPlik(File plik) {
         try (FileReader fileReader = new FileReader(plik)) {
             BufferedReader bufferReader = new BufferedReader(fileReader);
             String linia;
@@ -54,8 +54,6 @@ public class Pliki {
             }
             if (k == 1) {
                 System.err.println("Brak poprawnych danych w pliku " + plik.getName());
-            } else {
-                System.out.println("Poprawnie wczytano dane z pliku " + plik.getName());
             }
         } catch (IOException e) {
             System.err.println("Błąd odczytu pliku " + plik.getName());

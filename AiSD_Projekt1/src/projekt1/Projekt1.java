@@ -5,12 +5,8 @@
  */
 package projekt1;
 
-import java.awt.EventQueue;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import static projekt1.MetodaMonteCarlo.MetodaMonteCarlo;
-import static projekt1.Pliki.wczytajPlik;
 
 /**
  *
@@ -18,52 +14,36 @@ import static projekt1.Pliki.wczytajPlik;
  */
 public class Projekt1 {
 
-    /**
-     * @param args the command line arguments
-     * @throws java.io.FileNotFoundException
-     */
+    public static ZbiorPunktow zbior = new ZbiorPunktow();
+
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        //PrintStream Bledy = null;
-        //System.setErr(Bledy);
 
-        if (args.length < 1) {
-            System.out.println("Brak danych na wejściu.");
-            return;
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
 
-        ZbiorPunktow zbior = new ZbiorPunktow();
-        int plikN = 0;
-
-        while (plikN < args.length) {
-            File plik = new File(".//src//Teksty//" + args[plikN]);
-            wczytajPlik(plik, zbior);
-            plikN++;
-        }
-
-        if (zbior.pusty()) {
-            System.err.println("Brak poprawnych danych.");
-            return;
-        }
-        if (zbior.wielkosc() <= 2) {
-            System.err.println("Za mało punktów (" + zbior.wielkosc() + "), aby policzyć pole figury.");
-            return;
-        }
-
-//TEST
-        //System.out.println(zbior);
-        AlgorytmGrahama.znajdzOtoczke(zbior);
-        zbior.oczysc();
-
-        if (zbior.wielkosc() <= 2) {
-            System.err.println("Za mało punktów niewspółliniowych (" + zbior.wielkosc() + "), aby policzyć pole figury.");
-            return;
-        }
-
-//TEST
-        System.out.println(zbior);
-        
-        MetodaMonteCarlo(zbior, 1000000);
-//TEST
-        System.out.println("Wielkość pola figury opisywanej przez punkty wypukłe wynosi " + zbior.getPole());
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new GUI().setVisible(true);
+        });
     }
 }

@@ -102,28 +102,42 @@ public class ZbiorPunktow {
     }
 
     double znajdzYduze() {
-        double max=0;
-        for (int i = 0; i < zbior.size(); i++){
-            if (max < zbior.get(i).getY())
+        double max = 0;
+        for (int i = 0; i < zbior.size(); i++) {
+            if (max < zbior.get(i).getY()) {
                 max = zbior.get(i).getY();
+            }
         }
         return max;
     }
 
-    double znajdzXduze() {
-        double max=0;
-        for (int i = 0; i < zbior.size(); i++){
-            if (max < zbior.get(i).getX())
-                max = zbior.get(i).getX();
+    double znajdzYmale() {
+        double min = 0;
+        for (int i = 0; i < zbior.size(); i++) {
+            if (min > zbior.get(i).getY()) {
+                min = zbior.get(i).getY();
+            }
         }
-        return max;    }
+        return min;
+    }
+
+    double znajdzXduze() {
+        double max = 0;
+        for (int i = 0; i < zbior.size(); i++) {
+            if (max < zbior.get(i).getX()) {
+                max = zbior.get(i).getX();
+            }
+        }
+        return max;
+    }
 
     double znajdzXmale() {
-        double max=0;
-        for (int i = 0; i < zbior.size(); i++){
-            if (max > zbior.get(i).getX())
-                max = zbior.get(i).getX();
+        double min = 0;
+        for (int i = 0; i < zbior.size(); i++) {
+            if (min > zbior.get(i).getX()) {
+                min = zbior.get(i).getX();
+            }
         }
-        return max;    }
-
+        return min;
+    }
 }

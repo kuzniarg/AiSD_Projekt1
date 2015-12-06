@@ -5,13 +5,15 @@
  */
 package projekt1;
 
+import static projekt1.Projekt1.zbior;
+
 /**
  *
  * @author kuzniarg
  */
 public class AlgorytmGrahama {
 
-    public static void znajdzOtoczke(ZbiorPunktow zbior) {
+    public static void znajdzOtoczke() {
         int i = 1, pomN = 0;
         while (i < zbior.wielkosc()) {
             if (zbior.wezPunkt(pomN).getY() == zbior.wezPunkt(i).getY()) {
@@ -24,8 +26,8 @@ public class AlgorytmGrahama {
             i++;
         }
         zbior.ustalPunktO(pomN);
-        ustalPoczatekUkladu(zbior);
-        obliczWartosci(zbior);
+        ustalPoczatekUkladu();
+        obliczWartosci();
         zbior.sortuj();
 
         if (zbior.wielkosc() < 3) {
@@ -41,15 +43,15 @@ public class AlgorytmGrahama {
             }
         }
 
-        algorytm(zbior);
+        algorytm();
     }
 
-    private static void ustalPoczatekUkladu(ZbiorPunktow zbior) {
+    private static void ustalPoczatekUkladu() {
         double x = zbior.wezPunkt(0).getX(), y = zbior.wezPunkt(0).getY();
         zbior.przesunPunkty(x, y);
     }
 
-    private static void obliczWartosci(ZbiorPunktow zbior) {
+    private static void obliczWartosci() {
         for (int i = 1; i < zbior.wielkosc(); i++) {
             zbior.wezPunkt(i).setOdleglosc(Math.sqrt(Math.pow(zbior.wezPunkt(i).getX(), 2) + Math.pow(zbior.wezPunkt(i).getY(), 2)));
             if (zbior.wezPunkt(i).getX() == 0 && zbior.wezPunkt(i).getY() != 0) {
@@ -68,7 +70,7 @@ public class AlgorytmGrahama {
         }
     }
 
-    private static void algorytm(ZbiorPunktow zbior) {
+    private static void algorytm() {
         Punkt A, B, C;
         int i = 1;
 
@@ -82,9 +84,7 @@ public class AlgorytmGrahama {
             double iloczynWek = pom1.getX() * pom2.getY() - pom2.getX() * pom1.getY();
             if (iloczynWek > 0) {
                 zbior.usun(i + 1);
-                if (i > 1) {
-                    i--;
-                }
+                i = 0;
             } else {
                 B.setWypukly(true);
             }
