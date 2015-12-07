@@ -84,7 +84,12 @@ public class AlgorytmGrahama {
             double iloczynWek = pom1.getX() * pom2.getY() - pom2.getX() * pom1.getY();
             if (iloczynWek > 0) {
                 zbior.usun(i + 1);
-                i = 0;
+                if (i > 2) {
+                    i -= 2;
+                } else if (i > 1) {
+                    i--;
+                }
+
             } else {
                 B.setWypukly(true);
             }

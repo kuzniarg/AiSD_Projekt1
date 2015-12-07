@@ -70,9 +70,9 @@ public class Punkt implements Comparable<Punkt> {
         } else if (this.kat > o.getKat()) {
             return 1;
         } else if (this.odleglosc < o.getOdleglosc()) {
-            return -1;
-        } else if (this.odleglosc > o.getOdleglosc()) {
             return 1;
+        } else if (this.odleglosc > o.getOdleglosc()) {
+            return -1;
         } else {
             this.setDel();
             return 0;

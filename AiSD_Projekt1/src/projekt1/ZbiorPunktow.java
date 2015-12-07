@@ -140,4 +140,11 @@ public class ZbiorPunktow {
         }
         return min;
     }
+
+    boolean czyWypukly() {
+        for (int i = 0; i < wielkosc(); i++)
+            if (!zbior.get(i).czyWypukly())
+                return false;
+        return true;
+    }
 }
